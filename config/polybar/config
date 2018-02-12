@@ -1,11 +1,11 @@
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #222
-background-alt = #444
+background = #172a3a
+background-alt = #c3d2dc
 ;foreground = ${xrdb:color7:#222}
-foreground = #dfdfdf
+foreground = #3581b8
 foreground-alt = #555
-primary = #ffb52a
+primary = #8af3ff
 secondary = #e60053
 alert = #bd2c40
 
@@ -67,7 +67,7 @@ interval = 25
 
 mount-0 = /
 
-label-mounted =  %percentage_used%%
+label-mounted = %{u#115247} %percentage_used%%
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
 
@@ -172,16 +172,16 @@ card = intel_backlight
 type = internal/cpu
 interval = 2
 format-prefix = ""
-format-prefix-foreground = #dfdfdf
-format-underline = #f90000
+format-prefix-foreground = ${colors.foreground}
+format-underline = #29cdb1
 label = %percentage:2%%
 
 [module/memory]
 type = internal/memory
 interval = 2
 format-prefix = ""
-format-prefix-foreground = #dfdfdf
-format-underline = #4bffdc
+format-prefix-foreground = ${colors.foreground} 
+format-underline = #21a48e
 label = %percentage_used%%
 
 [module/wlan]
@@ -227,7 +227,7 @@ time-alt = %H:%M:%S
 
 format-prefix = 
 format-prefix-foreground = ${colors.foreground}
-format-underline = #0a6cf5
+format-underline = #66e9d2
 
 label = %date% %time%
 
@@ -236,7 +236,7 @@ type = internal/volume
 
 master-soundcard = hw:1
 
-format-volume = <ramp-volume> <label-volume>
+format-volume = %{u#197b6a}<ramp-volume> <label-volume>
 label-volume = %percentage%%
 label-volume-foreground = ${root.foreground}
 
@@ -273,7 +273,7 @@ adapter = AC0
 full-at = 98
 
 format-charging = <animation-charging> <label-charging>
-format-charging-underline = #ffb52a
+format-charging-underline = #40e3c7
 label-charging = %percentage%%
 
 format-discharging = <ramp-capacity> <label-discharging>
