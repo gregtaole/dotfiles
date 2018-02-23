@@ -107,12 +107,15 @@ set $ws10 "10"
 
 assign [class="Termite"] $ws1
 assign [class="(?i)code"] $ws2
+assign [class="(?i)qtcreator"] $ws2
 assign [class="Firefox"] $ws3
-assign [class="Mail"] $ws4
+assign [class="Thunderbird"] $ws4
 assign [class="(?i)clementine"] $ws5
 assign [class="(?i)chromium"] $ws5
+assign [class="(?i)vlc"] $ws5
 assign [class="Filezilla"] $ws9
 assign [class="Rocket.Chat+"] $ws10
+assign [class="[Kk]eybase"] $ws10
 
 for_window [class="(?i)dukto"] floating enable
 for_window [class="(?i)dukto"] move to workspace $ws9
@@ -180,32 +183,38 @@ bindsym XF86MonBrightnessUp exec brightnessctl s +25
 bindsym XF86AudioMute exec pactl set-sink-mute $(pacmd list-sinks | awk '/*index:/{print $3'}) toggle
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume $(pacmd list-sinks | awk '/* index:/{print $3}') +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume $(pacmd list-sinks | awk '/* index:/{print $3}') -5%
-## Startup
 
+## Auto-locking
+exec --no-startup-id xautolock -time 10 -locker "i3 lock -i '~/Pictures/Silk/silk12.png'" &
+# Lock before suspend
+exec --no-startup-id xss-lock -- i3lock -n -i ~/Pictures/Silk/silk12.png &
+
+
+## Startup
 # Set desktop background image
 exec --no-startup-id feh --bg-scale /home/dinervoid/Pictures/Silk/silk12.png
-
 # Use compton as compositor
 exec --no-startup-id compton --config /home/dinervoid/.config/compton.conf -b
-
-# Start polybar
+# Polybar
 exec --no-startup-id polybar top
-
+# nm-applet
+exec --no-startup-id nm-applet
 # Termite
 exec --no-startup-id termite
-
 # Firefox
 exec --no-startup-id firefox
-
 # Rocket.Chat
 exec --no-startup-id rocketchat
-
 # Thunderbird
 exec --no-startup-id thunderbird
 
 ## Shortcuts
 # i3 lock
 bindsym Control+$mod+l exec i3lock -i ~/Pictures/Silk/silk12.png
+
+## Misc
+# Make GNU Octave figures float by default
+for_window [class="octave-gui" title="Figure*"] floating enable
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
