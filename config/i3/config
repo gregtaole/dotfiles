@@ -197,13 +197,15 @@ exec --no-startup-id xss-lock -- i3lock -n -i ~/Pictures/Silk/silk12.png &
 
 ## Startup
 # Set desktop background image
-exec --no-startup-id feh --bg-scale /home/dinervoid/Pictures/Silk/silk12.png
+exec --no-startup-id feh --bg-scale /home/dinervoid/Pictures/background.png
 # Use compton as compositor
 exec --no-startup-id compton --config /home/dinervoid/.config/compton.conf -b
 # Polybar
 exec --no-startup-id polybar top
 # nm-applet
 exec --no-startup-id nm-applet
+# conky
+exec --no-startup-id conky --daemonize --pause=5
 # Termite
 exec --no-startup-id termite
 # Firefox
