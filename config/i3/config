@@ -108,6 +108,7 @@ set $ws10 "10"
 assign [class="Termite"] $ws1
 assign [class="(?i)code"] $ws2
 assign [class="(?i)qtcreator"] $ws2
+assign [class="jetbrains-goland"] $ws2
 assign [class="Firefox"] $ws3
 assign [class="Thunderbird"] $ws4
 assign [class="(?i)clementine"] $ws5
@@ -118,6 +119,8 @@ assign [class="[gG]thumb"] $ws6
 assign [class="okular"] $ws6
 assign [class="krita"] $ws7
 assign [class="[Ii]nkscape"] $ws7
+assign [class="[Gg]imp"] $ws7
+# assign [class="opensnitch-ui"] $ws8
 assign [class="Filezilla"] $ws9
 assign [class="Rocket.Chat+"] $ws10
 assign [class="[Kk]eybase"] $ws10
@@ -148,6 +151,21 @@ bindsym $mod+Shift+plus move container to workspace 7
 bindsym $mod+Shift+minus move container to workspace 8
 bindsym $mod+Shift+slash move container to workspace 9
 bindsym $mod+Shift+asterisk move container to workspace 10
+
+# make the currently focused window a scratchpad
+bindsym $mod+Shift+equal move scratchpad
+
+# show the first scratchpad window
+bindsym $mod+equal scratchpad show
+
+# show keepass
+bindsym $mod+Control+k [class="(?i)keepass2"] scratchpad show
+
+# show htop
+bindsym $mod+Control+h [title="htop"] scratchpad show
+
+# show opensnitch
+# bindsym $mod+Control+o [class="opensnitch-ui"] scratchpad show
 
 # reload the configuration file
 bindsym $mod+Shift+y reload
@@ -196,8 +214,10 @@ exec --no-startup-id xss-lock -- i3lock -n -i ~/Pictures/Silk/silk12.png &
 
 
 ## Startup
+# Start polkit agent
+exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1
 # Set desktop background image
-exec --no-startup-id feh --bg-scale /home/dinervoid/Pictures/background.png
+exec --no-startup-id feh --bg-scale /home/dinervoid/Pictures/background.jpg
 # Use compton as compositor
 exec --no-startup-id compton --config /home/dinervoid/.config/compton.conf -b
 # Polybar
@@ -206,6 +226,8 @@ exec --no-startup-id polybar top
 exec --no-startup-id nm-applet
 # conky
 exec --no-startup-id conky --daemonize --pause=5
+# fcitx
+exec --no-startup-id fcitx
 # Termite
 exec --no-startup-id termite
 # Firefox
@@ -216,6 +238,15 @@ exec --no-startup-id rocketchat
 exec --no-startup-id thunderbird
 # Keybase
 exec --no-startup-id run_keybase
+# htop in scratchpad
+exec --no-startup-id termite --title=htop --name=htop -exec=htop
+for_window [title="htop"] move scratchpad
+# keepass in scratchpad
+exec --no-startup-id keepass
+for_window [class="(?i)keepass2"] move scratchpad
+# opensnitch in scratchpad
+exec --no-startup-id opensnitch-ui
+# for_window [class="opensnitch-ui"] move scratchpad
 
 ## Shortcuts
 # i3 lock
